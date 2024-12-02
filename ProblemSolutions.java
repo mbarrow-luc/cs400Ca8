@@ -1,6 +1,6 @@
-/******************************************************************
+/*
  *
- *   ADD YOUR NAME / SECTION NUMBER HERE
+ *   Michael Barrow / COMP 400C-001
  *
  *   This java file contains the problem solutions of canFinish and
  *   numGroups methods.
@@ -11,7 +11,7 @@ import java.util.*;
 
 class ProblemSolutions {
 
-    /**
+    /*
      * Method canFinish
      *
      * You are building a course curriculum along with required intermediate
@@ -81,13 +81,13 @@ class ProblemSolutions {
         ArrayList<Integer>[] adj = getAdjList(numExams, 
                                         prerequisites); 
 
-        // ADD YOUR CODE HERE - ADD YOUR NAME / SECTION AT TOP OF FILE
+        // TODO ADD YOUR CODE HERE - ADD YOUR NAME / SECTION AT TOP OF FILE
         return false;
 
     }
 
 
-    /**
+    /*
      * Method getAdjList
      *
      * Building an Adjacency List for the directed graph based on number of nodes
@@ -134,7 +134,7 @@ class ProblemSolutions {
      * this graph externally as an non-directed
      * Adjacency Matrix. And the graph itself may not
      * be fully connected, it can have 1 or more
-     * non-connected compoents (subgraphs).
+     * non-connected components (sub-graphs).
      *
      * Example 1:
      *   Input :
@@ -190,7 +190,7 @@ class ProblemSolutions {
             }
         }
 
-        // YOUR CODE GOES HERE - you can add helper methods, you do not need
+        // TODO YOUR CODE GOES HERE - you can add helper methods, you do not need
         // to put all code in this method.
         return -1;
     }

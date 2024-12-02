@@ -1,6 +1,6 @@
-/******************************************************************
+/*
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Michael Barrow / COMP 400C-001
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-/**
+/*
  *  Graph traversal exercise
  *
  *  The Graph class is a representing an oversimplified Directed Graph of vertices
@@ -93,7 +93,7 @@ public class Graph {
   }
 
 
-  /**
+  /*
    * method findRoot
    *
    * This method returns the value of the root vertex, where root is defined in
@@ -104,7 +104,7 @@ public class Graph {
   
   public int findRoot() {
 
-    // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME/SECTION AT TOP OF FILE
+    // TODO ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME/SECTION AT TOP OF FILE
     return -1;
   } 
 }
