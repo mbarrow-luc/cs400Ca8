@@ -72,18 +72,44 @@ class ProblemSolutions {
      * @return boolean          - True if all exams can be taken, else false.
      */
 
-    public boolean canFinish(int numExams, 
-                             int[][] prerequisites) {
-      
-        int numNodes = numExams;  // # of nodes in graph
+    private enum NodeState { UNVISITED, VISITING, VISITED }
 
-        // Build directed graph's adjacency list
-        ArrayList<Integer>[] adj = getAdjList(numExams, 
-                                        prerequisites); 
+    public boolean canFinish(int numExams, int[][] prerequisites) {
 
-        // TODO ADD YOUR CODE HERE - ADD YOUR NAME / SECTION AT TOP OF FILE
+        ArrayList<Integer>[] adj = getAdjList(numExams, prerequisites);
+        NodeState[] visited = new NodeState[numExams];
+        Arrays.fill(visited, NodeState.UNVISITED);
+
+       for (int i = 0; i < numExams; i++) {
+            if (visited[i] == NodeState.UNVISITED) {
+                if (hasCycle(adj, visited, i)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    // helper function to check for cycles using recursive DFS
+    private boolean hasCycle(ArrayList<Integer>[] adj, NodeState[] visited, int node) {
+        if (visited[node] == NodeState.VISITING) {
+            return true;
+        }
+        if (visited[node] == NodeState.VISITED) {
+            return false;
+        }
+        visited[node] = NodeState.VISITING;
+
+        // visit all adjacent nodes
+        for (int neighbor : adj[node]) {
+            if (hasCycle(adj, visited, neighbor)) {
+                return true;
+            }
+        }
+        visited[node] = NodeState.VISITED;
+
         return false;
-
     }
 
 
@@ -105,7 +131,7 @@ class ProblemSolutions {
                     = new ArrayList[numNodes];      // Create an array of ArrayList ADT
 
         for (int node = 0; node < numNodes; node++){
-            adj[node] = new ArrayList<Integer>();   // Allocate empty ArrayList per node
+            adj[node] = new ArrayList<>();   // Allocate empty ArrayList per node
         }
         for (int[] edge : edges){
             adj[edge[0]].add(edge[1]);              // Add connected node edge [1] for node [0]
