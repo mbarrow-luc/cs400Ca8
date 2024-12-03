@@ -7,9 +7,7 @@
  *
  ********************************************************************/
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 /*
@@ -104,7 +102,22 @@ public class Graph {
   
   public int findRoot() {
 
-    // TODO ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME/SECTION AT TOP OF FILE
+    Set<Integer> notRoots = new HashSet<>();
+
+    for (int i=0; i < numVertices; i++) {
+        notRoots.addAll(adjListArr[i]);
+    }
+
+    if (notRoots.size() != numVertices - 1) {
+      return -1;
+    }
+
+    for (int i=0; i < numVertices; i++) {
+      if (! notRoots.contains(i)) {
+        return vertexValues.get(i);
+      }
+    }
+
     return -1;
   } 
 }
