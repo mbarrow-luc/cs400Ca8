@@ -26,7 +26,7 @@ class ProblemSolutions {
      * in prerequisites. You want to avoid this embarrassment by making sure you define
      * a curriculum and exam schedule that can be completed.
      *
-     * You goal is to ensure that any student pursuing the certificate of 'master
+     * Your goal is to ensure that any student pursuing the certificate of 'master
      * programmer', can complete 'n' certification exams, each being specific to a
      * topic. Some exams have prerequisites of needing to take and pass earlier
      * certificate exams. You do not want to force any order of taking the exams, but
@@ -91,7 +91,7 @@ class ProblemSolutions {
         return true;
     }
 
-    // helper function to check for cycles using recursive DFS
+    // helper method to check for cycles using recursive DFS
     private boolean hasCycle(ArrayList<Integer>[] adj, NodeState[] visited, int node) {
         if (visited[node] == NodeState.VISITING) {
             return true;
@@ -157,7 +157,7 @@ class ProblemSolutions {
      * where people are represented as nodes, and
      * edges between them represent people being
      * connected. In this problem, we are representing
-     * this graph externally as an non-directed
+     * this graph externally as a non-directed
      * Adjacency Matrix. And the graph itself may not
      * be fully connected, it can have 1 or more
      * non-connected components (sub-graphs).
@@ -190,6 +190,7 @@ class ProblemSolutions {
      */
 
     public int numGroups(int[][] adjMatrix) {
+
         int numNodes = adjMatrix.length;
         Map<Integer,List<Integer>> graph = new HashMap();
         int i = 0, j =0;
@@ -207,7 +208,6 @@ class ProblemSolutions {
                     graph.putIfAbsent(i, new ArrayList());
                     // Add AdjList for node j if not there
                     graph.putIfAbsent(j, new ArrayList());
-
                     // Update node i adjList to include node j
                     graph.get(i).add(j);
                     // Update node j adjList to include node i
@@ -216,9 +216,27 @@ class ProblemSolutions {
             }
         }
 
-        // TODO YOUR CODE GOES HERE - you can add helper methods, you do not need
-        // to put all code in this method.
-        return -1;
+        boolean[] visited = new boolean[numNodes];
+        int groups = 0;
+
+        // find unvisited nodes
+        for (i = 0; i < numNodes; i++) {
+            if (! visited[i]) {
+                dfs(i, graph, visited); // DFS from unvisited node
+                groups++;
+            }
+        }
+
+        return groups;
     }
 
+    // helper method to visit connected nodes using recursive DFS
+    private void dfs(int node, Map<Integer, List<Integer>> graph, boolean[] visited) {
+        visited[node] = true;
+        for (int neighbor : graph.getOrDefault(node, new ArrayList<>())) {
+            if (! visited[neighbor]) {
+                dfs(neighbor, graph, visited);
+            }
+        }
+    }
 }
